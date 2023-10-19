@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Heapsorter<T> where T : IComparable<T>
+public class ArrayHeapsorter<T> where T : IComparable<T>
 {
-    T[] array;
-    int placeholder = 0;
+    private T[] array;
+    private int placeholder = 0;
     private int end;
 
-    public Heapsorter(T[] list)
+    public ArrayHeapsorter(T[] list)
     {
         array = new T[list.Length];
         for (int i = 0; i < list.Length; i++)

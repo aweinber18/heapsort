@@ -1,6 +1,7 @@
 ﻿using System;
 
-public class TreePrinter<T>
+// Modified from ChatGpt
+public class TreePrinter<T> where T : IComparable<T>
 {
     public static void PrintTree(T[] array)
     {
@@ -14,7 +15,7 @@ public class TreePrinter<T>
             int spacing = (maxElements / elementsOnThisLevel);
 
             if (level > 1) spacing += 2;
-            else if (level == 0) spacing -= 10;
+            else if (level == 0) spacing -= 6;
 
             for (int i = 0; i < elementsOnThisLevel; i++)
             {
@@ -27,4 +28,33 @@ public class TreePrinter<T>
             Console.WriteLine();
         }
     }
+
+    public static void PrintTree(Node<T> node, int length)
+    {
+        IList<T> list = new List<T>();
+        for (int i = 0; i < length; i++)
+        {
+            list.Add(node.GetNodeAt(i).Value);
+        }
+        T[] array = list.ToArray();
+        PrintTree(array);
+    }
+
+    public static void PrintNode(Node<T> node)
+    {
+        if (node == null) return;
+
+        Console.Write(node.Value.ToString() + "\t");
+        PrintNode(node.Left); 
+        PrintNode(node.Right);
+    }
+/*
+    public static void SetNode(Node<T> node, IList<T> list, int i)
+    {
+        if (node == null) return;
+
+        list.Add(node.Value);
+        SetNode(node.Left, list, i++);
+        SetNode(node.Right, list, i++);
+    }*/
 }
